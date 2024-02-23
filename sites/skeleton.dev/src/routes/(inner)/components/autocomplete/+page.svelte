@@ -284,6 +284,13 @@ function myCustomFilter(): AutocompleteOption<string>[] {
 				<svelte:fragment slot="source">
 					<CodeBlock language="ts" code={`let inputChip = '';`} />
 					<CodeBlock language="ts" code={`let inputChipList: string[] = ['vanilla', 'chocolate'];`} />
+					<CodeBlock language="ts" code={`
+  function onInputChipSelect(event: CustomEvent): void {
+    if (inputChipList.includes(event.detail.value) === false) {
+      inputChipList = [...inputChipList, event.detail.value];
+      inputChip = "";
+    }
+  }`} />
 					<CodeBlock language="html" code={`<InputChip bind:input={inputChip} bind:value={inputChipList} name="chips" />`} />
 					<CodeBlock
 						language="html"
